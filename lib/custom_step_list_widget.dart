@@ -98,5 +98,22 @@ class CustomStepListWidget extends StatelessWidget {
     this.subtitleTextStyle = const TextStyle(fontSize: 17, color: Colors.grey),
   }) : super(key: key);
 
- 
+  @override
+  Widget build(BuildContext context) {
+    /// If it is the last step don't show the last separator line.
+    bool _isLast(int index) {
+      return steps.length - 1 == index;
+    }
+
+    /// Builds the line that separates the steps.
+    Widget _buildLine(bool visible) {
+      return Container(
+        width: visible && showSeparatorLine ? lineWidth : 0.0,
+        height: lineHeight,
+        color: lineColor,
+      );
+    }
+
+    
+  }
 }
