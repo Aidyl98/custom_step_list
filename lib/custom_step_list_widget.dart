@@ -168,6 +168,42 @@ class CustomStepListWidget extends StatelessWidget {
       );
     }
 
-  
+    /// Builds the full widget that merge the title and subtitle
+    /// with the step and his content.
+    Widget _buildVerticalHeader(int index) {
+      return Container(
+        padding: stepPadding,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    // Line parts are always added in order for the ink splash to
+                    // flood the tips of the connector lines.
+                    _buildCircle(index),
+                    _buildLine(!_isLast(index)),
+                  ],
+                ),
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsetsDirectional.only(start: 12.0),
+                    padding: const EdgeInsets.only(top: 6.0),
+                    child: _buildHeaderText(index),
+                  ),
+                ),
+              ],
+            ),
+            !_isLast(index) && steps[index].endOfLineContent != null
+                ? steps[index].endOfLineContent!
+                : Container(),
+          ],
+        ),
+      );
+    }
+
   }
 }
