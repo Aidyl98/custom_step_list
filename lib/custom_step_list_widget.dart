@@ -72,6 +72,16 @@ class CustomStepListWidget extends StatelessWidget {
   /// The style of the subtitle widget.
   final TextStyle subtitleTextStyle;
 
+  /// The margin before the texts.
+  ///
+  /// Space between the circle and the title/subtitle.
+  final EdgeInsetsGeometry textsMargin;
+
+  /// The padding around the texts.
+  ///
+  /// Space around the title and subtitle.
+  final EdgeInsetsGeometry? textsPadding;
+
   /// Builds a custom `Step List Widget`.
   const CustomStepListWidget({
     Key? key,
@@ -94,8 +104,10 @@ class CustomStepListWidget extends StatelessWidget {
     this.circleBorderColor = Colors.black,
     this.circleChild,
     //// TITLE & SUBTITLE ////
-    this.titleTextStyle = const TextStyle(fontSize: 20),
+    this.titleTextStyle = const TextStyle(fontSize: 20, color: Colors.black),
     this.subtitleTextStyle = const TextStyle(fontSize: 17, color: Colors.grey),
+    this.textsMargin = const EdgeInsetsDirectional.only(start: 12.0),
+    this.textsPadding,
   }) : super(key: key);
 
   @override
@@ -190,8 +202,11 @@ class CustomStepListWidget extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
-                    margin: const EdgeInsetsDirectional.only(start: 12.0),
-                    padding: const EdgeInsets.only(top: 6.0),
+                    margin: textsMargin,
+                    padding: textsPadding ??
+                        (steps[index].subtitle == null
+                            ? const EdgeInsets.only(top: 12.0)
+                            : const EdgeInsets.only(top: 6.0)),
                     child: _buildHeaderText(index),
                   ),
                 ),
