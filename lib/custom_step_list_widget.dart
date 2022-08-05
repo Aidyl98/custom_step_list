@@ -72,5 +72,31 @@ class CustomStepListWidget extends StatelessWidget {
   /// The style of the subtitle widget.
   final TextStyle subtitleTextStyle;
 
-  
+  /// Builds a custom `Step List Widget`.
+  const CustomStepListWidget({
+    Key? key,
+    required this.steps,
+    this.changeStepShape = false,
+    this.stepPadding = const EdgeInsets.symmetric(horizontal: 12),
+    this.stepListPadding = EdgeInsets.zero,
+    this.stepListPhysics = const NeverScrollableScrollPhysics(),
+    ////  LINE  ////
+    this.lineColor = Colors.black,
+    this.showSeparatorLine = true,
+    this.lineHeight = 25.0,
+    this.lineWidth = 1.0,
+    ////  CIRCLE  ////
+    this.circleWidth = 30.0,
+    this.circleHeight = 30.0,
+    this.circleMargin = const EdgeInsets.symmetric(vertical: 8.0),
+    this.circleShapeDecoration,
+    this.circleColor = Colors.white,
+    this.circleBorderColor = Colors.black,
+    this.circleChild,
+    //// TITLE & SUBTITLE ////
+    this.titleTextStyle = const TextStyle(fontSize: 20),
+    this.subtitleTextStyle = const TextStyle(fontSize: 17, color: Colors.grey),
+  }) : super(key: key);
+
+ 
 }
