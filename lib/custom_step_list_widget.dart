@@ -205,5 +205,14 @@ class CustomStepListWidget extends StatelessWidget {
       );
     }
 
+    return ListView(
+      shrinkWrap: true,
+      padding: stepListPadding,
+      physics: stepListPhysics,
+      children: <Widget>[
+        for (int index = 0; index < steps.length; index++)
+          _buildVerticalHeader(index),
+      ],
+    );
   }
 }
