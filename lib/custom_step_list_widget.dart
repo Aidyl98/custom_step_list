@@ -64,5 +64,13 @@ class CustomStepListWidget extends StatelessWidget {
   /// For example can be a number or an icon.
   final Widget? circleChild;
 
+  ////////////////////////// TITLE & SUBTITLE //////////////////////////////////
+
+  /// The style of the title widget.
+  final TextStyle titleTextStyle;
+
+  /// The style of the subtitle widget.
+  final TextStyle subtitleTextStyle;
+
   
 }
