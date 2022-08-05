@@ -114,6 +114,60 @@ class CustomStepListWidget extends StatelessWidget {
       );
     }
 
-    
+    /// Builds the cicle/step that show the number of the step.
+    Widget _buildCircle(int index) {
+      return Container(
+        margin: circleMargin,
+        width: circleWidth,
+        height: circleHeight,
+        decoration: circleShapeDecoration ??
+            ShapeDecoration(
+              color: circleColor,
+              shape: !changeStepShape
+                  ? const CircleBorder(
+                      side: BorderSide(
+                        color: Colors.black,
+                      ),
+                    )
+                  : const RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Colors.black,
+                      ),
+                    ),
+            ),
+        child: circleChild,
+      );
+    }
+
+    /// Builds a [Column] that holds the title and subtitle Widget
+    /// that will be later initializated.
+    Widget _buildHeaderText(int index) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          // The title widget.
+          AnimatedDefaultTextStyle(
+            style: titleTextStyle,
+            duration: kThemeAnimationDuration,
+            curve: Curves.fastOutSlowIn,
+            child: steps[index].title,
+          ),
+          // The subtitle widget if not null.
+          if (steps[index].subtitle != null)
+            Container(
+              margin: const EdgeInsets.only(top: 4.0),
+              child: AnimatedDefaultTextStyle(
+                style: subtitleTextStyle,
+                duration: kThemeAnimationDuration,
+                curve: Curves.fastOutSlowIn,
+                child: steps[index].subtitle!,
+              ),
+            ),
+        ],
+      );
+    }
+
+  
   }
 }
