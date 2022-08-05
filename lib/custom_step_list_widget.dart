@@ -37,5 +37,32 @@ class CustomStepListWidget extends StatelessWidget {
   /// The height of the line that separates the steps.
   final double lineHeight;
 
+  /////////////////////////////// CIRCLE ///////////////////////////////////////
+
+  /// The width of the circle that mark a step.
+  final double circleWidth;
+
+  /// The height of the circle that mark a step.
+  final double circleHeight;
+
+  /// The empty space that surround the [circleShapeDecoration] and [child].
+  final EdgeInsetsGeometry circleMargin;
+
+  /// A [ShapeDecoration] defines the color and the form of the circle.
+  /// * Example for circle use [CircleBorder].
+  /// * Example for square use [RoundedRectangleBorder]
+  final ShapeDecoration? circleShapeDecoration;
+
+  /// The color that fill the circle. For more customization use the [circleShapeDecoration].
+  final Color circleColor;
+
+  /// The color that surround/border the circle. For more customization use the [circleShapeDecoration].
+  final Color circleBorderColor;
+
+  /// The widget inside the circle.
+  ///
+  /// For example can be a number or an icon.
+  final Widget? circleChild;
+
   
 }
