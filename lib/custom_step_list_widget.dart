@@ -23,5 +23,19 @@ class CustomStepListWidget extends StatelessWidget {
   ///  Default to [NeverScrollableScrollPhysics].
   final ScrollPhysics stepListPhysics;
 
+  ///////////////////////////////// LINE ///////////////////////////////////////
+
+  /// The color of the separator line.
+  final Color lineColor;
+
+  /// Show or not the line that separates the steps.
+  final bool showSeparatorLine;
+
+  /// The width of the line that separates the steps.
+  final double lineWidth;
+
+  /// The height of the line that separates the steps.
+  final double lineHeight;
+
   
 }
