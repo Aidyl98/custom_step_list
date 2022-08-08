@@ -1,3 +1,4 @@
+import 'package:custom_step_list/custom_step_state.dart';
 import 'package:flutter/material.dart';
 
 import 'package:custom_step_list/custom_step.dart';
@@ -16,6 +17,14 @@ class CustomStepListWidget extends StatelessWidget {
   ///
   /// For example: the first circle step is going to have the number one inside.
   final bool showNumbers;
+
+  /// If this bool is set to true it will show a child/icon inside the circle
+  /// matching the state of the step.
+  ///
+  /// For example:
+  /// * Complete:
+  /// *
+  final bool showCircleChildByState;
 
   /// Padding around the step such as:
   /// the circle, the title, the subtitle and the line with his content.
@@ -74,6 +83,24 @@ class CustomStepListWidget extends StatelessWidget {
   /// For styling use this property.
   final TextStyle circleNumbersTextStyle;
 
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the child/icon when the state is complete use this property.
+  final Widget? circleChildCompleteStatus;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the child/icon when the state is normal use this property.
+  final Widget? circleChildNormalStatus;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the child/icon when the state is error use this property.
+  final Widget? circleChildErrorStatus;
+
   ////////////////////////// TITLE & SUBTITLE //////////////////////////////////
 
   /// The style of the title widget.
@@ -98,6 +125,7 @@ class CustomStepListWidget extends StatelessWidget {
     required this.steps,
     this.changeStepShape = false,
     this.showNumbers = false,
+    this.showCircleChildByState = false,
     this.stepPadding = const EdgeInsets.symmetric(horizontal: 12),
     this.stepListPadding = EdgeInsets.zero,
     this.stepListPhysics = const NeverScrollableScrollPhysics(),
@@ -118,6 +146,9 @@ class CustomStepListWidget extends StatelessWidget {
       fontSize: 20,
       color: Colors.white,
     ),
+    this.circleChildCompleteStatus,
+    this.circleChildNormalStatus,
+    this.circleChildErrorStatus,
     //// TITLE & SUBTITLE ////
     this.titleTextStyle = const TextStyle(fontSize: 20, color: Colors.black),
     this.subtitleTextStyle = const TextStyle(fontSize: 17, color: Colors.grey),
@@ -141,6 +172,30 @@ class CustomStepListWidget extends StatelessWidget {
       );
     }
 
+    Widget _getStateIcon(CustomStepState state) {
+      switch (state) {
+        case CustomStepState.complete:
+          return circleChildCompleteStatus ??
+              const Center(
+                child: Icon(Icons.check),
+              );
+        case CustomStepState.normal:
+          return circleChildCompleteStatus ??
+              const Center(
+                child: Icon(Icons.circle),
+              );
+        case CustomStepState.error:
+          return circleChildCompleteStatus ??
+              const Center(
+                child: Icon(Icons.close),
+              );
+        default:
+          return const Center(
+            child: Icon(Icons.close),
+          );
+      }
+    }
+
     /// Builds the cicle/step that show the number of the step.
     Widget _buildCircle(int index) {
       return Container(
@@ -162,7 +217,8 @@ class CustomStepListWidget extends StatelessWidget {
                       ),
                     ),
             ),
-        child: circleChild ??
+        child: steps[index].circleChild ??
+            circleChild ??
             (showNumbers
                 ? Center(
                     child: Text(
@@ -170,7 +226,9 @@ class CustomStepListWidget extends StatelessWidget {
                       style: circleNumbersTextStyle,
                     ),
                   )
-                : null),
+                : showCircleChildByState
+                    ? _getStateIcon(steps[index].state)
+                    : null),
       );
     }
 
