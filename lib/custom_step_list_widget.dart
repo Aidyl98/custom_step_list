@@ -22,8 +22,9 @@ class CustomStepListWidget extends StatelessWidget {
   /// matching the state of the step.
   ///
   /// For example:
-  /// * Complete:
-  /// *
+  /// * Complete: Show Icons.check,
+  /// * Normal: Show Icons.circle,
+  /// * Error: Show Icons.close,
   final bool showCircleChildByState;
 
   /// Padding around the step such as:
@@ -101,6 +102,30 @@ class CustomStepListWidget extends StatelessWidget {
   /// To change the child/icon when the state is error use this property.
   final Widget? circleChildErrorStatus;
 
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the color of the child/icon when the state is complete use this property.
+  final Color circleChildCompleteStatusColor;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the color of the child/icon when the state is normal use this property.
+  final Color circleChildNormalStatusColor;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the color of the child/icon when the state is error use this property.
+  final Color circleChildErrorStatusColor;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the size of this childs/icons use this property.
+  final double? circleChildSize;
+
   ////////////////////////// TITLE & SUBTITLE //////////////////////////////////
 
   /// The style of the title widget.
@@ -149,6 +174,10 @@ class CustomStepListWidget extends StatelessWidget {
     this.circleChildCompleteStatus,
     this.circleChildNormalStatus,
     this.circleChildErrorStatus,
+    this.circleChildCompleteStatusColor = Colors.green,
+    this.circleChildNormalStatusColor = Colors.white,
+    this.circleChildErrorStatusColor = Colors.red,
+    this.circleChildSize,
     //// TITLE & SUBTITLE ////
     this.titleTextStyle = const TextStyle(fontSize: 20, color: Colors.black),
     this.subtitleTextStyle = const TextStyle(fontSize: 17, color: Colors.grey),
@@ -176,22 +205,38 @@ class CustomStepListWidget extends StatelessWidget {
       switch (state) {
         case CustomStepState.complete:
           return circleChildCompleteStatus ??
-              const Center(
-                child: Icon(Icons.check),
+              Center(
+                child: Icon(
+                  Icons.check,
+                  color: circleChildCompleteStatusColor,
+                  size: circleChildSize,
+                ),
               );
         case CustomStepState.normal:
           return circleChildCompleteStatus ??
-              const Center(
-                child: Icon(Icons.circle),
+              Center(
+                child: Icon(
+                  Icons.circle,
+                  color: circleChildNormalStatusColor,
+                  size: circleChildSize,
+                ),
               );
         case CustomStepState.error:
           return circleChildCompleteStatus ??
-              const Center(
-                child: Icon(Icons.close),
+              Center(
+                child: Icon(
+                  Icons.close,
+                  color: circleChildErrorStatusColor,
+                  size: circleChildSize,
+                ),
               );
         default:
-          return const Center(
-            child: Icon(Icons.close),
+          return Center(
+            child: Icon(
+              Icons.circle,
+              color: circleChildNormalStatusColor,
+              size: circleChildSize,
+            ),
           );
       }
     }
