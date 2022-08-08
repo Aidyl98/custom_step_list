@@ -11,6 +11,12 @@ class CustomStepListWidget extends StatelessWidget {
   /// * If true show the steps as squares.
   final bool changeStepShape;
 
+  /// If this bool is set to true it will show a number inside the circle steps
+  /// matching is order.
+  ///
+  /// For example: the first circle step is going to have the number one inside.
+  final bool showNumbers;
+
   /// Padding around the step such as:
   /// the circle, the title, the subtitle and the line with his content.
   final EdgeInsetsGeometry stepPadding;
@@ -64,6 +70,10 @@ class CustomStepListWidget extends StatelessWidget {
   /// For example can be a number or an icon.
   final Widget? circleChild;
 
+  /// If [showNumbers] is true numbers are been show inside the cicle.
+  /// For styling use this property.
+  final TextStyle circleNumbersTextStyle;
+
   ////////////////////////// TITLE & SUBTITLE //////////////////////////////////
 
   /// The style of the title widget.
@@ -87,6 +97,7 @@ class CustomStepListWidget extends StatelessWidget {
     Key? key,
     required this.steps,
     this.changeStepShape = false,
+    this.showNumbers = false,
     this.stepPadding = const EdgeInsets.symmetric(horizontal: 12),
     this.stepListPadding = EdgeInsets.zero,
     this.stepListPhysics = const NeverScrollableScrollPhysics(),
@@ -103,6 +114,10 @@ class CustomStepListWidget extends StatelessWidget {
     this.circleColor = Colors.white,
     this.circleBorderColor = Colors.black,
     this.circleChild,
+    this.circleNumbersTextStyle = const TextStyle(
+      fontSize: 20,
+      color: Colors.white,
+    ),
     //// TITLE & SUBTITLE ////
     this.titleTextStyle = const TextStyle(fontSize: 20, color: Colors.black),
     this.subtitleTextStyle = const TextStyle(fontSize: 17, color: Colors.grey),
@@ -147,7 +162,15 @@ class CustomStepListWidget extends StatelessWidget {
                       ),
                     ),
             ),
-        child: circleChild,
+        child: circleChild ??
+            (showNumbers
+                ? Center(
+                    child: Text(
+                      "$index",
+                      style: circleNumbersTextStyle,
+                    ),
+                  )
+                : null),
       );
     }
 
