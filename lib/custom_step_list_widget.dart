@@ -247,20 +247,24 @@ class CustomStepListWidget extends StatelessWidget {
         margin: circleMargin,
         width: circleWidth,
         height: circleHeight,
-        decoration: circleShapeDecoration ??
+        decoration: steps[index].circleDecoration ??
+            circleShapeDecoration ??
             ShapeDecoration(
-              color: circleColor,
-              shape: !changeStepShape
-                  ? const CircleBorder(
-                      side: BorderSide(
-                        color: Colors.black,
-                      ),
-                    )
-                  : const RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: Colors.black,
-                      ),
-                    ),
+              color: steps[index].circleColor ?? circleColor,
+              shape: steps[index].circleShape ??
+                  (!changeStepShape
+                      ? CircleBorder(
+                          side: BorderSide(
+                            color: steps[index].circleBorderColor ??
+                                circleBorderColor,
+                          ),
+                        )
+                      : RoundedRectangleBorder(
+                          side: BorderSide(
+                            color: steps[index].circleBorderColor ??
+                                circleBorderColor,
+                          ),
+                        )),
             ),
         child: steps[index].circleChild ??
             circleChild ??
