@@ -1,6 +1,4 @@
-import 'package:custom_step_list/custom_step.dart';
-import 'package:custom_step_list/custom_step_list_widget.dart';
-import 'package:custom_step_list/custom_step_state.dart';
+import 'package:custom_step_list/custom_step_list.dart';
 import 'package:flutter/material.dart';
 
 void main() {
