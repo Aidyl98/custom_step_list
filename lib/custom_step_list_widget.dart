@@ -247,7 +247,8 @@ class CustomStepListWidget extends StatelessWidget {
         margin: circleMargin,
         width: circleWidth,
         height: circleHeight,
-        decoration: circleShapeDecoration ??
+        decoration: steps[index].circleDecoration ??
+            circleShapeDecoration ??
             ShapeDecoration(
               color: circleColor,
               shape: !changeStepShape
