@@ -17,6 +17,12 @@ class CustomStep {
   /// If null, the endOfLineContent is not shown.
   final Widget? endOfLineContent;
 
+  /// The content of the step that appears inside the circle.
+  ///
+  /// If this parameter is set then `circleChild`, `showNumbers`
+  /// and `showCircleChildByState` will not be taken into account.
+  final Widget? circleChild;
+
   /// The state of the step which determines the styling of its components
   /// and whether steps are interactive.
   final CustomStepState state;
@@ -30,6 +36,7 @@ class CustomStep {
   const CustomStep({
     required this.title,
     this.subtitle,
+    this.circleChild,
     this.endOfLineContent,
     this.state = CustomStepState.normal,
     this.isActive = true,

@@ -1,3 +1,4 @@
+import 'package:custom_step_list/custom_step_state.dart';
 import 'package:flutter/material.dart';
 
 import 'package:custom_step_list/custom_step.dart';
@@ -10,6 +11,21 @@ class CustomStepListWidget extends StatelessWidget {
   /// * If false show the steps as circles.
   /// * If true show the steps as squares.
   final bool changeStepShape;
+
+  /// If this bool is set to true it will show a number inside the circle steps
+  /// matching is order.
+  ///
+  /// For example: the first circle step is going to have the number one inside.
+  final bool showNumbers;
+
+  /// If this bool is set to true it will show a child/icon inside the circle
+  /// matching the state of the step.
+  ///
+  /// For example:
+  /// * Complete: Show Icons.check,
+  /// * Normal: Show Icons.circle,
+  /// * Error: Show Icons.close,
+  final bool showCircleChildByState;
 
   /// Padding around the step such as:
   /// the circle, the title, the subtitle and the line with his content.
@@ -64,6 +80,52 @@ class CustomStepListWidget extends StatelessWidget {
   /// For example can be a number or an icon.
   final Widget? circleChild;
 
+  /// If [showNumbers] is true numbers are been show inside the cicle.
+  /// For styling use this property.
+  final TextStyle circleNumbersTextStyle;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the child/icon when the state is complete use this property.
+  final Widget? circleChildCompleteStatus;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the child/icon when the state is normal use this property.
+  final Widget? circleChildNormalStatus;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the child/icon when the state is error use this property.
+  final Widget? circleChildErrorStatus;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the color of the child/icon when the state is complete use this property.
+  final Color circleChildCompleteStatusColor;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the color of the child/icon when the state is normal use this property.
+  final Color circleChildNormalStatusColor;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the color of the child/icon when the state is error use this property.
+  final Color circleChildErrorStatusColor;
+
+  /// If [showCircleChildByState] is true a child is been show inside the cicle.
+  /// According to the status of every step.
+  ///
+  /// To change the size of this childs/icons use this property.
+  final double? circleChildSize;
+
   ////////////////////////// TITLE & SUBTITLE //////////////////////////////////
 
   /// The style of the title widget.
@@ -87,6 +149,8 @@ class CustomStepListWidget extends StatelessWidget {
     Key? key,
     required this.steps,
     this.changeStepShape = false,
+    this.showNumbers = false,
+    this.showCircleChildByState = false,
     this.stepPadding = const EdgeInsets.symmetric(horizontal: 12),
     this.stepListPadding = EdgeInsets.zero,
     this.stepListPhysics = const NeverScrollableScrollPhysics(),
@@ -103,6 +167,17 @@ class CustomStepListWidget extends StatelessWidget {
     this.circleColor = Colors.white,
     this.circleBorderColor = Colors.black,
     this.circleChild,
+    this.circleNumbersTextStyle = const TextStyle(
+      fontSize: 20,
+      color: Colors.white,
+    ),
+    this.circleChildCompleteStatus,
+    this.circleChildNormalStatus,
+    this.circleChildErrorStatus,
+    this.circleChildCompleteStatusColor = Colors.green,
+    this.circleChildNormalStatusColor = Colors.white,
+    this.circleChildErrorStatusColor = Colors.red,
+    this.circleChildSize,
     //// TITLE & SUBTITLE ////
     this.titleTextStyle = const TextStyle(fontSize: 20, color: Colors.black),
     this.subtitleTextStyle = const TextStyle(fontSize: 17, color: Colors.grey),
@@ -126,6 +201,46 @@ class CustomStepListWidget extends StatelessWidget {
       );
     }
 
+    Widget _getStateIcon(CustomStepState state) {
+      switch (state) {
+        case CustomStepState.complete:
+          return circleChildCompleteStatus ??
+              Center(
+                child: Icon(
+                  Icons.check,
+                  color: circleChildCompleteStatusColor,
+                  size: circleChildSize,
+                ),
+              );
+        case CustomStepState.normal:
+          return circleChildCompleteStatus ??
+              Center(
+                child: Icon(
+                  Icons.circle,
+                  color: circleChildNormalStatusColor,
+                  size: circleChildSize,
+                ),
+              );
+        case CustomStepState.error:
+          return circleChildCompleteStatus ??
+              Center(
+                child: Icon(
+                  Icons.close,
+                  color: circleChildErrorStatusColor,
+                  size: circleChildSize,
+                ),
+              );
+        default:
+          return Center(
+            child: Icon(
+              Icons.circle,
+              color: circleChildNormalStatusColor,
+              size: circleChildSize,
+            ),
+          );
+      }
+    }
+
     /// Builds the cicle/step that show the number of the step.
     Widget _buildCircle(int index) {
       return Container(
@@ -147,7 +262,18 @@ class CustomStepListWidget extends StatelessWidget {
                       ),
                     ),
             ),
-        child: circleChild,
+        child: steps[index].circleChild ??
+            circleChild ??
+            (showNumbers
+                ? Center(
+                    child: Text(
+                      "$index",
+                      style: circleNumbersTextStyle,
+                    ),
+                  )
+                : showCircleChildByState
+                    ? _getStateIcon(steps[index].state)
+                    : null),
       );
     }
 
