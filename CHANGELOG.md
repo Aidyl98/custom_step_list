@@ -7,3 +7,7 @@
 
 * Customize single step.
 * Added properties to change the decoration and shape of a specific step, as well as the possibility to change its color and border color.
+
+## [1.1.1] - 2022/08/11
+
+* Added custom example - "TravelListExample".

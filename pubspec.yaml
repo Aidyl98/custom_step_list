@@ -1,6 +1,6 @@
 name: custom_step_list
 description: Create a visual-only list of steps that is fully customizable.
-version: 1.0.0
+version: 1.1.1
 homepage: https://github.com/Aidyl98/custom_step_list
 
 environment:
