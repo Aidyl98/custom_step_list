@@ -1,3 +1,4 @@
-## 0.0.1
+## [1.0.0] - 2022/08/11
 
-* TODO: Describe initial release.
+* Initial Release.
+* Added Widgets: CustomStepListWidget, CustomStep and CustomStepState.
