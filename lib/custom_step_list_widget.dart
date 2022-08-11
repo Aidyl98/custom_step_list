@@ -255,12 +255,14 @@ class CustomStepListWidget extends StatelessWidget {
                   (!changeStepShape
                       ? CircleBorder(
                           side: BorderSide(
-                            color: circleBorderColor,
+                            color: steps[index].circleBorderColor ??
+                                circleBorderColor,
                           ),
                         )
                       : RoundedRectangleBorder(
                           side: BorderSide(
-                            color: circleBorderColor,
+                            color: steps[index].circleBorderColor ??
+                                circleBorderColor,
                           ),
                         )),
             ),
