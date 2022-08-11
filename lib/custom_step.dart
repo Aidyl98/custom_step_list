@@ -30,6 +30,9 @@ class CustomStep {
   /// Whether or not the step is active. The flag only influences styling.
   final bool isActive;
 
+  /// To change the shape of a specific step.
+  final Decoration? circleDecoration;
+
   /// Creates a step for a [CustomStepListWidget].
   ///
   /// The [title] argument must not be null.
@@ -40,5 +43,6 @@ class CustomStep {
     this.endOfLineContent,
     this.state = CustomStepState.normal,
     this.isActive = true,
+    this.circleDecoration,
   });
 }
