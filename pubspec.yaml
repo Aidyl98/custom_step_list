@@ -1,6 +1,6 @@
 name: custom_step_list
 description: Create a visual-only list of steps that is fully customizable.
-version: 0.0.1
+version: 1.0.0
 homepage:
 
 environment:
