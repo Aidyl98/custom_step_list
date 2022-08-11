@@ -36,6 +36,9 @@ class CustomStep {
   /// To change the shape of a specific step.
   final ShapeBorder? circleShape;
 
+  /// To change the color of a specific step.
+  final Color? circleColor;
+
   /// Creates a step for a [CustomStepListWidget].
   ///
   /// The [title] argument must not be null.
@@ -48,5 +51,6 @@ class CustomStep {
     this.isActive = true,
     this.circleDecoration,
     this.circleShape,
+    this.circleColor,
   });
 }
