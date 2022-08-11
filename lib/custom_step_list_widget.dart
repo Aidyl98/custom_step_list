@@ -39,7 +39,8 @@ class CustomStepListWidget extends StatelessWidget {
   ///  Default to [NeverScrollableScrollPhysics].
   final ScrollPhysics stepListPhysics;
 
-  ///////////////////////////////// LINE ///////////////////////////////////////
+  // /////////////////////////////// LINE /////////////////////////////////// //
+  
 
   /// The color of the separator line.
   final Color lineColor;
@@ -53,7 +54,7 @@ class CustomStepListWidget extends StatelessWidget {
   /// The height of the line that separates the steps.
   final double lineHeight;
 
-  /////////////////////////////// CIRCLE ///////////////////////////////////////
+  // //////////////////////////// CIRCLE //////////////////////////////////// //
 
   /// The width of the circle that mark a step.
   final double circleWidth;
@@ -126,7 +127,7 @@ class CustomStepListWidget extends StatelessWidget {
   /// To change the size of this childs/icons use this property.
   final double? circleChildSize;
 
-  ////////////////////////// TITLE & SUBTITLE //////////////////////////////////
+  // /////////////////////// TITLE & SUBTITLE /////////////////////////////// //
 
   /// The style of the title widget.
   final TextStyle titleTextStyle;
